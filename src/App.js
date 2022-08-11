@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import { useState,createContext } from 'react';
 import './App.css';
+import Hero from './components/Hero';
+import Menubar from './components/Menubar';
+
+
+export const userInfoContext = createContext(null)
+
+
 
 function App() {
+const [user,setUser] = useState(null)
+const [isLoggedIn,setIsLoggedIn]=useState(false)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <userInfoContext.Provider value={{user,setUser,isLoggedIn,setIsLoggedIn}}>
+   <Menubar/>
+   <Hero/>
+   </userInfoContext.Provider>
   );
 }
 
